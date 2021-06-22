@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="UTF-8">
+        <title>Edição - Salão de Beleza</title>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/body.css}"/>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/menu.css}"/>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/controle.css}"/>
+        <script type="text/javascript" th:src="@{/js/controle.js}"></script>
+    </head>
+    <body>
+		<script th:if="${param.sell_error}"> alert('A venda não pode ser concluída: Quantidade inválida!'); </script>
+        <div th:replace="~{fragments/header.html :: header}"></div>
+		
+		<div id="main"> 
+			<h1> Editar Venda </h1> 
+			
+        	<form method="post" th:object="${venda}">
+       			<div class="left">
+        			ID: <br> <input type="text" th:field="${venda.idVenda}" class="short" disabled/>
+        		</div>
+       			<div class="right" style="margin-right: 14px;">
+       				Quantidade: <br> <input th:field="${venda.qntCompra}" onchange="verificarVenda()" name="qntCompra" type="text" class="medium"/> 
+       			</div>
+				<br><br><br><br>
+				
+				Produto: <br> 
+				<select th:field="${venda.idProduto}" onchange="verificarVenda()" name="idProduto" class="long">
+					<div th:each="produto : ${produtos}">
+						<option th:value="${produto.idProduto}" th:text="${produto.nomeProduto + ' (ESTOQUE: ' + produto.qntProduto + ')'}"></option>
+					</div>
+				</select> 
+				<br><br>
+				
+				Cliente (Nome / CPF): <br> 
+				<select th:field="${venda.cpfCliente}" onchange="verificarVenda()" name="cpfCliente" class="long">
+					<div th:each="cliente : ${clientes}">
+						<option th:value="${cliente.cpfCliente}" th:text="${cliente.nomeCliente + ' / ' + cliente.cpfCliente}"></option>
+					</div>
+				</select> 
+				<br><br>
+				
+				<div class="fullLine center">
+					<button id="btnSalvar" disabled>Salvar</button>
+				</div>
+		       	<br><br>
+				
+				<span id="infoErro"></span>
+        	</form>
+		</div>
+		
+		<a id="voltar" th:href="@{/vendas}" title="Voltar">
+			<img th:src="@{/images/back.png}"/>
+		</a>
+
+        <div th:replace="~{fragments/footer.html :: footer}"></div>
+    </body>
+</html>

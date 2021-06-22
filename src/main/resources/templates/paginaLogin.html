@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+	<head>
+		<meta charset="UTF-8">
+		<title>Login - Salão de Beleza</title>
+		<link rel="stylesheet" type="text/css" th:href="@{/css/login.css}" />
+	</head>
+	<body>
+		<div class="msg" th:if="${param.error}">Nome de usuário ou senha inválidos!</div>
+		<div class="msg" th:if="${param.logout}">Você foi desconectado.</div>
+		<div id="login">
+			<p class="welcome">LOGIN</p>
+			<br>
+			<form th:action="@{/login}" method="post">
+				<input type="text" name="username" placeholder="Usuário..." />
+				<p style="height: 5px; background-color: white;"></p>
+				<input type="password" name="password" placeholder="Senha..." /> <br>
+				<button>Entrar</button>
+			</form>
+		</div>
+	</body>
+</html>

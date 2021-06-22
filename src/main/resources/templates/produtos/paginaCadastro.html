@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="UTF-8">
+        <title>Cadastro - Salão de Beleza</title>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/body.css}"/>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/menu.css}"/>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/controle.css}"/>
+        <script type="text/javascript" th:src="@{/js/controle.js}"></script>
+    </head>
+    <body>		
+        <div th:replace="~{fragments/header.html :: header}"></div>
+		
+		<div id="main"> 
+			<h1> Cadastrar Produto </h1> 
+			
+			<form method="post">
+				ID: <br> <input type="text" th:value="${id}" class="short" disabled/>
+				<br><br>
+				
+				Nome: <br> <input onchange="verificarProduto()" name="nomeProduto" type="text" class="long"/> 
+				<br><br>
+				
+				<div class="fullLine">
+					<div class="left">
+						Marca: <br> 
+						<select onchange="verificarProduto()" name="cnpjFornecedor" class="big">
+							<div th:each="fornecedor : ${fornecedores}">
+								<option th:value="${fornecedor.cnpjFornecedor}" th:text="${fornecedor.nomeFornecedor}"></option>
+							</div>
+						</select>
+					</div>
+					<div class="left">
+						Preço (R$): <br> <input onchange="verificarProduto()" name="precoProduto" type="text" class="medium"/>
+					</div>
+					<div class="left">
+						Estoque: <br> <input onchange="verificarProduto()" name="qntProduto" type="text" class="medium"/>
+					</div>
+				</div>
+				<br><br>
+				
+				<div class="fullLine center">
+					<button id="btnSalvar" disabled>Salvar</button>
+				</div>
+		       	<br><br>
+				
+				<span id="infoErro"></span>
+			</form>
+		</div>
+		
+		<a id="voltar" th:href="@{/produtos}" title="Voltar">
+			<img th:src="@{/images/back.png}"/>
+		</a>
+
+        <div th:replace="~{fragments/footer.html :: footer}"></div>
+    </body>
+</html>

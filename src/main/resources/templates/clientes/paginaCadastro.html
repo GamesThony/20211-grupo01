@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="UTF-8">
+        <title>Cadastro - Salão de Beleza</title>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/body.css}"/>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/menu.css}"/>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/controle.css}"/>
+        <script type="text/javascript" th:src="@{/js/controle.js}"></script>
+    </head>
+    <body>
+		<script th:if="${param.client_error}"> alert('O cliente já existe no banco de dados!'); </script>
+		
+        <div th:replace="~{fragments/header.html :: header}"></div>
+		
+		<div id="main"> 
+			<h1> Cadastrar Cliente </h1> 
+			
+        	<form method="post">
+				CPF: <br> <input onchange="verificarCliente()" name="cpfCliente" type="text" class="medium"/> 
+				<br><br>
+				
+				<div class="fullLine">
+					<div class="left">
+						Nome: <br> <input onchange="verificarCliente()" class="leftside" name="nomeCliente" type="text"/>
+					</div>
+					<div class="right">
+						CEP: <br> <input onchange="verificarCliente()" name="cepCliente" type="text" class="medium"/>
+					</div>
+				</div>
+				<br><br>
+				
+				<div class="fullLine center">
+					<button id="btnSalvar" disabled>Salvar</button>
+				</div>
+		       	<br><br>
+				
+				<span id="infoErro"></span>
+        	</form>
+		</div>
+		
+		<a id="voltar" th:href="@{/clientes}" title="Voltar">
+			<img th:src="@{/images/back.png}"/>
+		</a>
+
+        <div th:replace="~{fragments/footer.html :: footer}"></div>
+    </body>
+</html>

@@ -1,0 +1,11 @@
+<div id="controle" th:fragment="controle(type)">
+	<div th:if="${pag_atual != 1}">
+		<a th:href="@{/__${type}__/1}" title="Primeita Página"><<</a>
+		<a th:href="@{/__${type}__/__${pag_ant}__}" title="Página Anterior"><</a>
+	</div>
+	<span th:text="${pag_atual}"></span>
+	<div th:if="${pag_atual != pag_max}">
+		<a th:href="@{/__${type}__/__${pag_prox}__}" title="Próxima Página">></a>
+		<a th:href="@{/__${type}__/__${pag_max}__}" title="Última Página">>></a>
+	</div>
+</div>

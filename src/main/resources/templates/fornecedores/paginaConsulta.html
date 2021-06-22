@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="UTF-8">
+        <title>Consulta - Salão de Beleza</title>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/body.css}"/>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/menu.css}"/>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/consulta.css}"/>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/remover.css}"/>
+        <script type="text/javascript" th:src="@{/js/consulta.js}"></script>
+    </head>
+    <body>
+		<script th:if="${param.saved}"> alert('Marca salva!'); </script>
+		<script th:if="${param.deleted}"> alert('Marca deletada!'); </script>
+		<script th:if="${param.updated}"> alert('Marca atualizada!'); </script>
+		
+        <div th:replace="~{fragments/header.html :: header}"></div>
+		
+		<div id="titulo"> <h1> Marcas </h1> </div>
+
+		<a th:href="@{/marca/new}" title="Adicionar Novo" id="cadastrar">
+			<img th:src="@{/images/add.png}" class="imgBTNS"/>
+		</a>
+		
+		<div id="dados">
+			<span th:if="${#lists.isEmpty(fornecedores)}">Não existe marcas cadastradas no banco.</span>
+			<table th:unless="${#lists.isEmpty(fornecedores)}">
+				<thead>
+					<tr>
+						<td> CNPJ </td>
+						<td> Nome </td>
+						<td> </td>
+						<td> </td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="item : ${fornecedores}">
+						<td> <span th:text="${item.cnpjFornecedor}"></span> </td>
+						<td> <span th:text="${item.nomeFornecedor}"></span> </td>
+						<td> <a th:href="@{/marca/__${item.cnpjFornecedor}__}" title="Editar"><img th:src="@{/images/edit.png}" class="imgBTNS"/></a> </td>
+						<td> <a href="javascript:void(0);" th:onclick="'excluir(\'fornecedor com CNPJ\', \'__${item.cnpjFornecedor}__\')'" title="Excluir"><img th:src="@{/images/delete.png}" class="imgBTNS"/></a> </td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		
+        <div th:replace="~{fragments/controle.html :: controle('marcas')}"></div>
+		
+		<div id="remover">
+			<div id="prompt">
+				<span class="bold">Confirmação</span> <br>
+				<span id="prompt_texto"></span> <br>
+				<span>Essa ação não poderá ser desfeita!</span> <br> <br>
+				
+				<button th:onclick="|ok('marca')|">OK</button>
+				<button onclick="cancelar()">CANCELAR</button>
+			</div>
+		</div>
+
+        <div th:replace="~{fragments/footer.html :: footer}"></div>
+    </body>
+</html>

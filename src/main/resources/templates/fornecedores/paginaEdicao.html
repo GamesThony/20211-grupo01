@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="UTF-8">
+        <title>Edição - Salão de Beleza</title>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/body.css}"/>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/menu.css}"/>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/controle.css}"/>
+        <script type="text/javascript" th:src="@{/js/controle.js}"></script>
+    </head>
+    <body>		
+        <div th:replace="~{fragments/header.html :: header}"></div>
+		
+		<div id="main"> 
+			<h1> Editar Marca </h1> 
+			
+        	<form method="post" th:object="${fornecedor}">
+				CNPJ: <br> <input th:field="${fornecedor.cnpjFornecedor}" onchange="verificarFornecedor()" name="cnpjFornecedor" type="text"/>
+				<br><br>
+				
+				Nome: <br> <input th:field="${fornecedor.nomeFornecedor}" onchange="verificarFornecedor()" name="nomeFornecedor" type="text" class="long"/> 
+				<br><br>
+				
+				<div class="fullLine center">
+					<button id="btnSalvar" disabled>Salvar</button>
+				</div>
+		       	<br><br>
+				
+				<span id="infoErro"></span>
+        	</form>
+		</div>
+		
+		<a id="voltar" th:href="@{/marcas}" title="Voltar">
+			<img th:src="@{/images/back.png}"/>
+		</a>
+
+        <div th:replace="~{fragments/footer.html :: footer}"></div>
+    </body>
+</html>

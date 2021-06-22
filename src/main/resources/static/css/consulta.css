@@ -1,0 +1,78 @@
+/* Título */
+#titulo {
+	text-align: center;
+	width: 100%;
+	position: absolute; 
+	top: 80px; 
+}
+
+#titulo h1 { margin: 5px; }
+
+/* Botão Adicionar */
+#cadastrar {
+	position: absolute;
+	top: 50%;
+	left: 3%;
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	z-index: 2;
+}
+
+#cadastrar .imgBTNS {
+	object-fit: cover;
+	width: 50px;
+	cursor: pointer;
+	height: 50px;
+}
+
+/* Tabela com Dados */
+#dados {
+	width: 100%;
+	position: absolute;
+	top: 53%;
+	left: 50%;
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+}
+
+#dados span:first-child { 
+	text-align: center;
+	display: block;
+}
+
+#dados table {
+	text-align: center;
+	position: relative;
+	margin: auto;
+	border-collapse:collapse;
+}
+
+#dados table thead {
+	height: 40px;
+	font-weight: bold;
+}
+
+#dados table tbody tr td:not(:nth-last-child(1)):not(:nth-last-child(2)) { border-top: 2px solid black; }
+#dados table tr td:not(:first-child):not(:nth-last-child(1)):not(:nth-last-child(2)) { border-left: 2px solid black; }
+#dados table tr td { padding: 8px; } 
+
+#dados .imgBTNS {
+	object-fit: cover;
+	width: 20px;
+	cursor: pointer;
+	height: 20px;
+}
+
+/* Controle de Página */
+#controle {
+	text-align: center;
+	width: 100%;
+	position: absolute; 
+	bottom: 40px; 
+}
+
+#controle a {
+	text-decoration: none;
+	color: black;
+	font-weight: bold;
+}

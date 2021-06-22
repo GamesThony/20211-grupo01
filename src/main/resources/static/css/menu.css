@@ -1,0 +1,50 @@
+#menu {
+	width: 100%;
+	background-color: #00001F;
+	position: absolute;
+	top: 0;
+	z-index: 999;
+}
+
+#menu img {
+	margin-right: 10px;
+	width: 40px;
+	height: 40px;
+}
+
+#menu a {
+	padding: 10px;
+	text-decoration: none;
+	display: inline-block;
+	background-color: transparent;
+	color: white;
+	transition: 200ms;
+	font-weight: bold;
+}
+
+#menu a:last-child {
+	float: right;
+	position: relative;
+}
+
+#menu a:hover {
+	background-color: #1f001f33;
+	transition: 500ms;
+}
+
+#menu span {
+	top: -13px;
+	position: relative;
+	text-transform: uppercase;
+}
+
+#footer {
+	width: 100%;
+	background-color: #00001F;
+	color: white;
+	padding: 4px;
+	font-size: 14px;
+	text-align: center;
+	bottom: 0;
+	position: absolute;
+}

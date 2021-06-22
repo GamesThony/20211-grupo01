@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="UTF-8">
+        <title>Consulta - Salão de Beleza</title>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/body.css}"/>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/menu.css}"/>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/consulta.css}"/>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/remover.css}"/>
+        <script type="text/javascript" th:src="@{/js/consulta.js}"></script>
+    </head>
+    <body>
+		<script th:if="${param.saved}"> alert('Venda salva!'); </script>
+		<script th:if="${param.deleted}"> alert('Venda deletada!'); </script>
+		<script th:if="${param.updated}"> alert('Venda atualizada!'); </script>
+		
+        <div th:replace="~{fragments/header.html :: header}"></div>
+		
+		<div id="titulo"> <h1> Vendas </h1> </div>
+
+		<a th:href="@{/venda/new}" title="Adicionar Nova" id="cadastrar">
+			<img th:src="@{/images/add.png}" class="imgBTNS"/>
+		</a>
+		
+		<div id="dados">
+			<span th:if="${#lists.isEmpty(vendas)}">Não existe vendas cadastradas no banco.</span>
+			<table th:unless="${#lists.isEmpty(vendas)}">
+				<thead>
+					<tr>
+						<td> ID </td>
+						<td> ID<br>Produto </td>
+						<td> CPF<br>Cliente </td>
+						<td> Quantidade </td>
+						<td> </td>
+						<td> </td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="item : ${vendas}">
+						<td> <span th:text="${item.idVenda}"></span> </td>
+						<td> <span th:text="${item.idProduto}"></span> </td>
+						<td> <span th:text="${item.cpfCliente}"></span> </td>
+						<td> <span th:text="${item.qntCompra}"></span> </td>
+						<td> <a th:href="@{/venda/__${item.idVenda}__}" title="Editar"><img th:src="@{/images/edit.png}" class="imgBTNS"/></a> </td>
+						<td> <a href="javascript:void(0);" th:onclick="'excluir(\'venda no ID\', __${item.idVenda}__)'" title="Excluir"><img th:src="@{/images/delete.png}" class="imgBTNS"/></a> </td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		
+        <div th:replace="~{fragments/controle.html :: controle('vendas')}"></div>
+		
+		<div id="remover">
+			<div id="prompt">
+				<span class="bold">Confirmação</span> <br>
+				<span id="prompt_texto"></span> <br>
+				<span>Essa ação não poderá ser desfeita!</span> <br> <br>
+				
+				<button th:onclick="|ok('venda')|">OK</button>
+				<button onclick="cancelar()">CANCELAR</button>
+			</div>
+		</div>
+
+        <div th:replace="~{fragments/footer.html :: footer}"></div>
+    </body>
+</html>
